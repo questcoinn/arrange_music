@@ -1,0 +1,12 @@
+main {
+    flex-direction: row;
+    min-height: 100vh;
+    align-items: flex-start;
+}
+
+main article {
+    border: 1px solid black;
+    margin: 1%;
+    width: 48%;
+    height: 800px;
+}
