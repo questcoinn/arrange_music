@@ -58,6 +58,11 @@ header form {
     background: white;
 }
 
+select#search-cls {
+    font-size: 0.6rem;
+    border: none;
+}
+
 input#search-box {
     width: 140px;
     border: none;

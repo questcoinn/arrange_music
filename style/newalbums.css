@@ -15,7 +15,7 @@ input#calendar-submit {
     display: none;
 }
 
-select {
+article#calendar select {
     width: 48%;
     border: none;
     border-bottom: 1px solid darkgray;

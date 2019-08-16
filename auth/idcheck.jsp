@@ -10,8 +10,8 @@
 	out.println("<p>" + "pwd: " + pwd + "</p>");
 	
 	/*
-	id 존재하면
-		패스워드확인
+	id 존재하면 ---- SELECT id FROM webuser -> id 존재?
+		패스워드확인 ---- pwd 존재?
 		맞으면
 			(id) session 설정
 			redirect to index

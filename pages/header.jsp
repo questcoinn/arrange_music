@@ -10,12 +10,12 @@
 		</ul>
 	</nav>
 	<form action="" method="post">
-		<select name="" id="">
+		<select name="search-cls" id="search-cls">
 			<option>아티스트, 본문</option>
 			<option>아티스트</option>
 			<option>본문</option>
 		</select>
-		<input type="text" name="search-word" placeholder="앨범명" id="search-box">
+		<input type="text" name="search-word" placeholder="검색" id="search-box">
 		<input type="submit" value="" id="search-submit">
 	</form>
 </header>
