@@ -2,17 +2,17 @@
     pageEncoding="UTF-8"%>
 <div id="login-box">
 	<%
-		String user = (String) session.getAttribute("ID");
-
-		if (user != null) {
-			String userMessage = user + "님, 환영합니다.";
+		String nick = (String) session.getAttribute("nick");
+		
+		if (nick != null) {
+			String userMessage = nick + "님, 환영합니다.";
 			String logoutBtn = "<a href=\"pages/sessionOut.jsp\" id=\"logout-link\"><input type=\"button\" value=\"logout\"></a>";
 			
 			out.println("<p>" + userMessage + "</p>");
 			out.println(logoutBtn);
 
 		} else {
-			String form = "<form action=\"auth/idcheck.jsp\" method=\"post\">";
+			String form = "<form action=\"/auth/session.jsp\" method=\"post\">";
 			String idInput = "<input type=\"text\" name=\"uid\" placeholder=\"id\" id=\"uid-box\">";
 			String pwdInput = "<input type=\"password\" name=\"upwd\" placeholder=\"password\" id=\"upwd-box\">";
 			String submitBtn = "<input type=\"submit\" value=\"로그인\" id=\"login-btn\">";
@@ -26,3 +26,6 @@
 		}
 	%>
 </div>
+
+<script src="/script/ajax.js"></script>
+<script src="/script/logincheck.js"></script>

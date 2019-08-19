@@ -11,7 +11,7 @@
 <body>
 	<%@ include file="header.jsp" %>
 	<div id="login-box">
-		<form action="auth/idcheck.jsp" method="post">
+		<form action="/auth/session.jsp" method="post">
 			<div>
 				<input type="text" name="uid" placeholder="id" id="uid-box">
 			</div>
@@ -28,5 +28,7 @@
 
 	</div>
 
+	<script src="/script/ajax.js"></script>
+	<script src="/script/logincheck.js"></script>
 </body>
 </html>

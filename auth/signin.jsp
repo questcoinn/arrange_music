@@ -40,7 +40,6 @@
 	</form>
 	
 	<script src="/script/ajax.js"></script>
-	<script src="/script/checkPassword.js"></script>
 	<script src="/script/signin.js"></script>
 </body>
 </html>
