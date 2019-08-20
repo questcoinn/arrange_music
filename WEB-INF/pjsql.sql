@@ -10,14 +10,14 @@ id pwd 닉네임 생년월일
 
 /* CREATE DATABASE webpj; */
 
-/* USE webpj; */
+/*USE webpj;*/
 
 /* CREATE TABLE album(
 	id int PRIMARY KEY NOT NULL auto_increment,
     artist varchar(50) NOT NULL,
     title varchar(200) NOT NULL,
     r_date date NULL,
-    img varchar(255) DEFAULT "/images/nothing.png",
+    img varchar(255) DEFAULT "nothing.png",
     recommend int DEFAULT 0,
     dsc varchar(500) NULL,
     FULLTEXT KEY artist(artist),
@@ -35,13 +35,13 @@ id pwd 닉네임 생년월일
 	"test-artist", "test-title", "2019-08-14", "test-description"
 ); */
 
-/* SELECT * FROM album; */
+SELECT * FROM album/* WHERE artist="Blck Milk" AND title="DiVE"*/;
 
 /* SELECT * FROM album
 	WHERE MATCH(artist, title) AGAINST('test' IN BOOLEAN MODE); */
     
-/* INSERT INTO webuser VALUES(
-	"test", "test", "test-user", "2019-08-16"
+ /*INSERT INTO webuser VALUES(
+	"test3", "test", "test-user", NULL
 ); */
 
-SELECT * FROM webuser;
+/*SELECT * FROM webuser;*/
