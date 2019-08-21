@@ -2,10 +2,6 @@ div#write-box {
     align-self: flex-end;
 }
 
-main hr {
-    width: 100%;
-}
-
 div#albums {
     width: 100%;
     display: flex;
@@ -42,10 +38,10 @@ div.album-btns {
     justify-content: space-evenly;
 }
 
-div.album-btns input[value*="추천"] {
+input#reco-btn {
     background: #32bd32;
 }
 
-div.album-btns input[value*="들었음"] {
+input#heard-btn {
     background: #555;
 }

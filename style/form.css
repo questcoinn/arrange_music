@@ -1,0 +1,24 @@
+div#title-container input {
+    margin-right: 10px;
+}
+
+div#date-container {
+    margin-top: 10px;
+}
+
+div#title-container, div#dsc-container {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid darkgray;
+}
+
+textarea {
+    width: 500px;
+    height: 500px;
+}
+
+div#file-container {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid darkgray;
+}

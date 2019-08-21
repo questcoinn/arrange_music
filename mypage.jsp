@@ -7,9 +7,8 @@
 	String nick  = (String) session.getAttribute("nick");
 	String birth = (String) session.getAttribute("birth");
 
-	if(id == null) {
+	if(id == null)
 		response.sendRedirect("pages/login.jsp");
-	}
 	
 	try {
 		InitialContext ctx = new InitialContext();

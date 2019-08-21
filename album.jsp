@@ -89,8 +89,8 @@
 						out.println("</p>");
 						out.println(recoEl);
 						out.println("<div class=\"album-btns\">");
-						out.println("<input type=\"button\" value=\"추천\">");
-						out.println("<input type=\"button\" value=\"들었음\">");
+						out.println("<input type=\"button\" value=\"추천\" id=\"reco-btn\">");
+						out.println("<input type=\"button\" value=\"들었음\" id=\"heard-btn\">");
 						out.println("</div>");
 						out.println("</span>");
 					}

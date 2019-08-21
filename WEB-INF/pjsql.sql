@@ -12,17 +12,17 @@ id pwd 닉네임 생년월일
 
 /*USE webpj;*/
 
-/* CREATE TABLE album(
+/*CREATE TABLE album(
 	id int PRIMARY KEY NOT NULL auto_increment,
     artist varchar(50) NOT NULL,
     title varchar(200) NOT NULL,
     r_date date NULL,
     img varchar(255) DEFAULT "nothing.png",
     recommend int DEFAULT 0,
-    dsc varchar(500) NULL,
+    dsc varchar(16383) NULL,
     FULLTEXT KEY artist(artist),
     FULLTEXT KEY title(title)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8; */
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;*/
 
 /* CREATE TABLE webuser(
 	id varchar(20) PRIMARY KEY NOT NULL,
@@ -35,7 +35,13 @@ id pwd 닉네임 생년월일
 	"test-artist", "test-title", "2019-08-14", "test-description"
 ); */
 
-SELECT * FROM album/* WHERE artist="Blck Milk" AND title="DiVE"*/;
+/*ALTER TABLE album MODIFY dsc VARCHAR(21844);*/
+
+/*DELETE FROM album WHERE id=1;*/
+/*SET @CNT=0;
+UPDATE album SET id=@CNT:=@CNT+1;*/
+
+SELECT * FROM album;
 
 /* SELECT * FROM album
 	WHERE MATCH(artist, title) AGAINST('test' IN BOOLEAN MODE); */
@@ -45,3 +51,5 @@ SELECT * FROM album/* WHERE artist="Blck Milk" AND title="DiVE"*/;
 ); */
 
 /*SELECT * FROM webuser;*/
+
+/*DROP TABLE album;*/

@@ -5,8 +5,12 @@
 <%
 	request.setCharacterEncoding("utf-8");
 
-	String artist = "";
-	String title = "";
+	String artist  = "";
+	String title   = "";
+	String rDate   = "";
+	String imgName = "";
+	int recommend  = 0;
+	String desc    = "";
 	
 	try {
 		artist = request.getParameter("artist");
@@ -17,23 +21,30 @@
 		title = null;
 	}
 	
-	Connection con = null;
-	PreparedStatement s = null;
-	ResultSet r = null;
-	
 	try {
 		InitialContext ctx = new InitialContext();
 		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
-		con = ds.getConnection();
+		Connection con = ds.getConnection();
 		
 		String sql = "SELECT * FROM album WHERE artist=? AND title=?";
 
-		s = con.prepareStatement(sql);
+		PreparedStatement s = con.prepareStatement(sql);
 		s.setString(1, artist);
 		s.setString(2, title);
 		
-		r = s.executeQuery();
-
+		ResultSet r = s.executeQuery();
+		
+		while(r.next()) {
+			rDate     = r.getString(4);
+			imgName   = r.getString(5);
+			recommend = Integer.parseInt(r.getString(6));
+			desc      = r.getString(7).trim().replaceAll("[\n]", "<br>");
+		}
+		
+		r.close();
+		s.close();
+		con.close();
+		
 	} catch (Exception e) {
 		out.println("Connection Failed..");
 		out.println(e.getMessage());
@@ -44,35 +55,49 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>1</title>
+	<title><%= artist + " - " + title %></title>
 	<link rel="stylesheet" type="text/css" href="/style/index.css">
+	<link rel="stylesheet" type="text/css" href="/style/eachAlbum.css">
 </head>
 <body>
 	<%@ include file="/pages/header.jsp" %>
 	<main>
-		pre? 써서 \n 보존
-		<br>
-		<%
-			if(r != null) {
-				while(r.next()) {
-					out.println(r.getString(1));
-					out.println(r.getString(2));
-					out.println(r.getString(3));
-					out.println(r.getString(4));
-					out.println(r.getString(5));
-					out.println(r.getString(6));
-					out.println(r.getString(7));
-					out.println("<br>");
-				}
-				
-				r.close();
-			}
-				
-			if(s != null)
-				s.close();
-			if (con != null)
-				con.close();
-		%>
+		<h2><%= artist + " - " + title %></h2>
+		<div id="info">
+			<p>발매일 <strong><%= rDate %></strong></p>
+			<p>추천  <strong><%= recommend %></strong></p>
+		</div>
+		<hr>
+		<div id="edit-btns">
+			<form action="/pages/update.jsp" method="post">
+				<%
+					out.println("<input type=\"hidden\" name=\"artist\" value=\"" + artist + "\">");
+					out.println("<input type=\"hidden\" name=\"title\" value=\"" + title + "\">");
+				%>
+				<input type="submit" value="수정" id="update-btn">
+			</form>
+			<form action="/db/delete.jsp" method="post" id="delete-form">
+				<%
+					out.println("<input type=\"hidden\" name=\"artist\" value=\"" + artist + "\">");
+					out.println("<input type=\"hidden\" name=\"title\" value=\"" + title + "\">");
+					out.println("<input type=\"hidden\" name=\"img\" value=\"" + imgName + "\">");
+				%>
+				<input type="submit" value="삭제" id="delete-btn">
+			</form>
+		</div>
+		<div id="img-container">
+			<%= "<img src=\"/images/" + imgName + "\">" %>
+		</div>
+		<p>
+			<%= desc %>
+		</p>
+		<hr>
+		<div class="album-btns">
+			<input type="button" value="추천" id="reco-btn">
+			<input type="button" value="들었음" id="heard-btn">
+		</div>
 	</main>
+	
+	<script src="/script/deleteCheck.js"></script>
 </body>
 </html>

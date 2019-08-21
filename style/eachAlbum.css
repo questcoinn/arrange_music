@@ -1,0 +1,40 @@
+main h2 {
+    font-size: 2.2rem;
+    margin: 10px 0;
+}
+
+div#info, div#edit-btns {
+    align-self: flex-end;
+}
+
+div#info p {
+    display: inline-block;
+    margin: 0;
+    margin-left: 10px;
+}
+
+div#edit-btns form {
+    display: inline-block;
+}
+
+div#img-container {
+    width: 30%;
+}
+
+ main img {
+    width: 100%;
+}
+
+div.album-btns {
+    display: flex;
+    justify-content: space-evenly;
+    width: 150px;
+}
+
+input#reco-btn {
+    background: #32bd32;
+}
+
+input#heard-btn {
+    background: #555;
+}

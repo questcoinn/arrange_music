@@ -15,9 +15,9 @@
 			request, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
 	
 	String artist = multi.getParameter("artist");
-	String title  = multi.getParameter("title");
-	String rDate  = multi.getParameter("r_date");
-	String dsc    = multi.getParameter("dsc");
+	String title = multi.getParameter("title");
+	String rDate = multi.getParameter("r_date");
+	String dsc = multi.getParameter("dsc");
 	
 	Enumeration files = multi.getFileNames();
 	
@@ -35,43 +35,46 @@
         
 //		fileType = multi.getContentType(f);
 		file = multi.getFile(f);
-        fileSize = file.length();
+		try {
+        	fileSize = file.length();
+		} catch(NullPointerException e_np) {
+			fileSize = 0;
+		}
+	}
+	
+	if(originalName == null || file == null) {
+		originalName = multi.getParameter("curImg");
 	}
 	
 	int n = 0;
 
-	try {
+//	try {
 		InitialContext ctx = new InitialContext();
 		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
 		Connection con = ds.getConnection();
 
-		String sql = "INSERT INTO album(artist, title, r_date, img, dsc) VALUES("
-			+ "\"" + artist + "\", "
-			+ "\"" + title + "\", "
-			+ "\"" + rDate + "\", "
-			+ "\"" + originalName + "\", "
-			+ "\"" + dsc + "\")";
+		String sql = "UPDATE album SET "
+			+ "artist=\"" + artist + "\", "
+			+ "title=\"" + title + "\", "
+			+ "r_date=\"" + rDate + "\", "
+			+ "img=\"" + originalName + "\", "
+			+ "dsc=\"" + dsc + "\" "
+			+ "WHERE artist=? AND title=?";
 		
 		PreparedStatement s = con.prepareStatement(sql);
+		s.setString(1, artist);
+		s.setString(2, title);
 		
 		n = s.executeUpdate();
-		
-		if(n == 1) {
-			s = con.prepareStatement("SET @CNT=0");
-			s.execute();
-			
-			s = con.prepareStatement("UPDATE album SET id=@CNT:=@CNT+1");
-			s.executeUpdate();
-		}
 
 		s.close();
 		con.close();
 
-	} catch (Exception e) {
+/*	} catch (Exception e) {
 		out.println("Connection Failed..");
 		out.println(e.getMessage());
 		e.printStackTrace();
-	}
+	}*/
 %>
 <!DOCTYPE html>
 <html>
