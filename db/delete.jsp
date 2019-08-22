@@ -30,7 +30,7 @@
 			s = con.prepareStatement("UPDATE album SET id=@CNT:=@CNT+1");
 			s.executeUpdate();
 			
-			// 파일도 지워야함
+			// 파일 지우기
 			String imgDir = request.getRealPath("/images");
 			File file = new File(imgDir + "/" + img);
 			if(file.exists()) {
@@ -50,7 +50,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8" http-equiv="Refresh" content="3;url=/album.jsp">
+	<meta charset="UTF-8" http-equiv="Refresh" content="2;url=/album.jsp">
 	<title>completed!</title>
 </head>
 <body>

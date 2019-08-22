@@ -1,3 +1,4 @@
+// signin.js
 const checkExistingId = (str) => {
     const xhttp = new XMLHttpRequest();
 
@@ -11,6 +12,7 @@ const checkExistingId = (str) => {
     xhttp.send();
 }
 
+// logincheck.js
 const checkId = (uid, upwd) => {
     return new Promise((resolve, reject) => {
         const xhttp = new XMLHttpRequest();
@@ -24,4 +26,36 @@ const checkId = (uid, upwd) => {
         xhttp.open("GET", `/auth/idcheck.jsp?uid=${uid}&upwd=${upwd}`, true);
         xhttp.send();
     });
+}
+
+// albumcheck.js
+const checkAlbum = (artist, title) => {
+    return new Promise((resolve, reject) => {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                resolve(this.responseText);
+            }
+        }
+
+        xhttp.open("GET", `/db/albumcheck.jsp?artist=${artist}&title=${title}`, true);
+        xhttp.send();
+    });
+}
+
+// albumbtns.js
+const thumbsup = (uid, artist, title) => {
+    return new Promise((resolve, reject) => {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                resolve(this.responseText);
+            }
+        };
+
+        xhttp.open("GET", `/user/recommend.jsp?uid=${uid}&artist=${artist}&title=${title}`, true);
+        xhttp.send();
+    })
 }

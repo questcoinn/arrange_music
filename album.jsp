@@ -79,7 +79,7 @@
 						String imgEl    = "<a href=\"" + src + "\"><img src=\"/images/" + img + "\"></a>";
 						String artistEl = "<span class=\"artist\">" + artist + "</span>";
 						String titleEl  = "<span class=\"title\">" + title + "</span>";
-						String recoEl   = "<p class=\"album-reco\">" + reco + "</p>";
+						String recoEl   = "<p class=\"album-reco\"><strong class=\"reco\">" + reco + "</strong></p>";
 
 						out.print("<span class=\"album\">");
 						out.println(imgEl);
@@ -89,8 +89,8 @@
 						out.println("</p>");
 						out.println(recoEl);
 						out.println("<div class=\"album-btns\">");
-						out.println("<input type=\"button\" value=\"추천\" id=\"reco-btn\">");
-						out.println("<input type=\"button\" value=\"들었음\" id=\"heard-btn\">");
+						out.println("<input type=\"button\" value=\"추천\" class=\"reco-btn\">");
+						out.println("<input type=\"button\" value=\"들었음\" class=\"heard-btn\">");
 						out.println("</div>");
 						out.println("</span>");
 					}
@@ -117,5 +117,7 @@
 			<span><a href="album.jsp?page=100">next</a></span>
 		</div>
 	</main>
+	
+	<script src="/script/albumbtns.js"></script>
 </body>
 </html>

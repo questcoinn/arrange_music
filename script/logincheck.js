@@ -10,11 +10,11 @@ document.querySelector("input#login-btn").addEventListener("click", (e) => {
     } else if(pwd === "") {
         alert("패스워드를 입력해주세요.");
     } else {     
-        check(id, pwd, form);
+        checkL(id, pwd, form);
     }
 });
 
-const check = async (id, pwd, form) => {
+const checkL = async (id, pwd, form) => {
     const _response = await checkId(id, pwd);
     const response = _response.trim()
     

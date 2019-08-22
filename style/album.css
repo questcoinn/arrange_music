@@ -38,10 +38,10 @@ div.album-btns {
     justify-content: space-evenly;
 }
 
-input#reco-btn {
+input.reco-btn {
     background: #32bd32;
 }
 
-input#heard-btn {
+input.heard-btn {
     background: #555;
 }

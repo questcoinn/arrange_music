@@ -59,14 +59,14 @@
 		<form action="/db/update.jsp" enctype="multipart/form-data" method="post">
 			<div id="title-container">
 				<%
-					out.println("<input type=\"text\" name=\"artist\" placeholder=\"아티스트*\" value=\"" + artist + "\">");
-					out.println("<input type=\"text\" name=\"title\" placeholder=\"앨범이름*\" value=\"" + title + "\">");
+					out.println("<input type=\"text\" name=\"artist\" placeholder=\"아티스트*\" id=\"artist-in\" value=\"" + artist + "\">");
+					out.println("<input type=\"text\" name=\"title\" placeholder=\"앨범이름*\" id=\"title-in\" value=\"" + title + "\">");
 				%>
 			</div>
 			<div id="date-container">
 				<label for="r_date">발매일</label>
 				<%
-					out.println("<input type=\"date\" name=\"r_date\" value=\"" + rDate + "\">");
+					out.println("<input type=\"date\" name=\"r_date\" id=\"date-in\" value=\"" + rDate + "\">");
 				%>
 			</div>
 			<div id="dsc-container">
@@ -86,7 +86,7 @@
 				<input type="file" name="img" accept=".jpg, .jpeg, .png">
 			</div>
 			<div>
-				<input type="submit" value="저장">
+				<input type="submit" value="저장" id="submit">
 			</div>
 		</form>
 	</main>

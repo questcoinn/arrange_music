@@ -13,12 +13,12 @@
 	<main>
 		<form action="/db/create.jsp" enctype="multipart/form-data" method="post">
 			<div id="title-container">
-				<input type="text" name="artist" placeholder="아티스트*">
-				<input type="text" name="title" placeholder="앨범이름*">
+				<input type="text" name="artist" placeholder="아티스트*" id="artist-in">
+				<input type="text" name="title" placeholder="앨범이름*" id="title-in">
 			</div>
 			<div id="date-container">
 				<label for="r_date">발매일*</label>
-				<input type="date" name="r_date">
+				<input type="date" name="r_date" id="date-in">
 			</div>
 			<div id="dsc-container">
 				<textarea name="dsc" placeholder="상세"></textarea>
@@ -30,9 +30,12 @@
 				<input type="file" name="img" accept=".jpg, .jpeg, .png">
 			</div>
 			<div>
-				<input type="submit" value="저장">
+				<input type="submit" value="저장" id="submit">
 			</div>
 		</form>
 	</main>
+	
+	<script src="/script/ajax.js"></script>
+	<script src="/script/albumcheck.js"></script>
 </body>
 </html>

@@ -41,7 +41,9 @@ id pwd 닉네임 생년월일
 /*SET @CNT=0;
 UPDATE album SET id=@CNT:=@CNT+1;*/
 
-SELECT * FROM album;
+/*UPDATE album SET img="black-milk-dive.jpeg" WHERE id=2;*/
+
+/*SELECT * FROM album;*/
 
 /* SELECT * FROM album
 	WHERE MATCH(artist, title) AGAINST('test' IN BOOLEAN MODE); */
@@ -53,3 +55,14 @@ SELECT * FROM album;
 /*SELECT * FROM webuser;*/
 
 /*DROP TABLE album;*/
+
+/*CREATE TABLE webuser_info(
+	id int PRIMARY KEY NOT NULL auto_increment,
+    userid varchar(20) NOT NULL,
+    artist varchar(50) NOT NULL,
+    title varchar(200) NOT NULL,
+    recommended tinyint(1) DEFAULT 0,
+    heard tinyint(1) DEFAULT 0
+);*/
+
+SELECT * FROM webuser_info;

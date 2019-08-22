@@ -13,7 +13,7 @@
 		<jsp:include page="pages/loginBox.jsp" />
 		
 		<article id="random-article">
-			<img src="/images/sample.jpeg" alt="앨범이미지">
+			<img src="/images/nothing.png" alt="앨범이미지">
 			<p id="title">Black Milk - DIVE (EP)</p>
 			<p id="desc">(앨범 설명 요약)<br>...<br>...</p>
 		</article>

@@ -76,7 +76,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8" http-equiv="Refresh" content="3;url=/album.jsp">
+	<meta charset="UTF-8" http-equiv="Refresh" content="2;url=/album.jsp">
 	<title>completed!</title>
 </head>
 <body>

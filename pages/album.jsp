@@ -62,10 +62,13 @@
 <body>
 	<%@ include file="/pages/header.jsp" %>
 	<main>
-		<h2><%= artist + " - " + title %></h2>
+		<h2>
+			<span class="artist"><%= artist %></span>
+			<span class="title"><%= title %></span>
+		</h2>
 		<div id="info">
 			<p>발매일 <strong><%= rDate %></strong></p>
-			<p>추천  <strong><%= recommend %></strong></p>
+			<p>추천  <strong class="reco"><%= recommend %></strong></p>
 		</div>
 		<hr>
 		<div id="edit-btns">
@@ -93,8 +96,8 @@
 		</p>
 		<hr>
 		<div class="album-btns">
-			<input type="button" value="추천" id="reco-btn">
-			<input type="button" value="들었음" id="heard-btn">
+			<input type="button" value="추천" class="reco-btn">
+			<input type="button" value="들었음" class="heard-btn">
 		</div>
 	</main>
 	

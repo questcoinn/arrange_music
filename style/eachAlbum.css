@@ -1,6 +1,14 @@
+main {
+    padding-bottom: 50px;
+}
+
 main h2 {
     font-size: 2.2rem;
     margin: 10px 0;
+}
+
+span.title::before {
+    content: " - ";
 }
 
 div#info, div#edit-btns {
@@ -31,10 +39,10 @@ div.album-btns {
     width: 150px;
 }
 
-input#reco-btn {
+input.reco-btn {
     background: #32bd32;
 }
 
-input#heard-btn {
+input.heard-btn {
     background: #555;
 }

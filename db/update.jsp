@@ -23,7 +23,7 @@
 	
 	String f = "";
 	String originalName = "";
-//	String fileName1 = "";
+	String fileName1 = "";
 //	String fileType = "";
 	File file = null;
 	long fileSize = 0;
@@ -31,7 +31,7 @@
 	while(files.hasMoreElements()) {
 		f = (String)files.nextElement(); // 파일 input에 지정한 이름(img)
         originalName = multi.getOriginalFileName(f); // 그에 해당하는 실재 파일 이름(sample.jpeg)
-//		fileName1 = multi.getFilesystemName(f); // 중복정책이름(sample1.jpeg)
+		fileName1 = multi.getFilesystemName(f); // 중복정책이름(sample1.jpeg)
         
 //		fileType = multi.getContentType(f);
 		file = multi.getFile(f);
@@ -44,11 +44,18 @@
 	
 	if(originalName == null || file == null) {
 		originalName = multi.getParameter("curImg");
+	} else {
+		// 이미지가 교체되면 원래파일 지우기
+		String imgDir = request.getRealPath("/images");
+		File originalFile = new File(imgDir + "/" + originalName);
+		if(originalFile.exists()) {
+			originalFile.delete();
+		}
 	}
 	
 	int n = 0;
 
-//	try {
+	try {
 		InitialContext ctx = new InitialContext();
 		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
 		Connection con = ds.getConnection();
@@ -57,29 +64,27 @@
 			+ "artist=\"" + artist + "\", "
 			+ "title=\"" + title + "\", "
 			+ "r_date=\"" + rDate + "\", "
-			+ "img=\"" + originalName + "\", "
+			+ "img=\"" + fileName1 + "\", "
 			+ "dsc=\"" + dsc + "\" "
-			+ "WHERE artist=? AND title=?";
+			+ "WHERE artist=\"" + artist + "\" AND title=\"" + title + "\"";
 		
 		PreparedStatement s = con.prepareStatement(sql);
-		s.setString(1, artist);
-		s.setString(2, title);
 		
 		n = s.executeUpdate();
 
 		s.close();
 		con.close();
 
-/*	} catch (Exception e) {
+	} catch (Exception e) {
 		out.println("Connection Failed..");
 		out.println(e.getMessage());
 		e.printStackTrace();
-	}*/
+	}
 %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8" http-equiv="Refresh" content="3;url=/album.jsp">
+	<meta charset="UTF-8" http-equiv="Refresh" content="2;url=/album.jsp">
 	<title>completed!</title>
 </head>
 <body>
