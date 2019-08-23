@@ -63,7 +63,7 @@
 				s = con.prepareStatement(sql);
 				n = s.executeUpdate();
 				
-				if (m == 0 && n == 0) {
+				if (m == 0 || n == 0) {
 					out.println("failed_sql");
 
 				} else if (m == 1 && n == 1) {
@@ -79,6 +79,27 @@
 			
 		} else {
 			// 엔티티가 없으면 새로 쓰기
+			// album 테이블
+			sql = "SELECT recommend FROM album WHERE "
+				+ "artist=\"" + artist + "\" AND "
+				+ "title=\"" + title + "\"";
+				
+			s = con.prepareStatement(sql);
+			r = s.executeQuery();
+			
+			int recommend = 0;
+				
+			if(r.next())
+				recommend = Integer.parseInt(r.getString(1)) + 1;
+				
+			sql = "UPDATE album SET recommend=" + recommend + " WHERE "
+				+ "artist=\"" + artist + "\" AND "
+				+ "title=\"" + title + "\"";
+				
+			s = con.prepareStatement(sql);
+			m = s.executeUpdate();
+				
+			// webuser_info 테이블
 			sql = "INSERT INTO webuser_info(userid, artist, title, recommended) VALUES("
 				+ "\"" + id + "\", "
 				+ "\"" + artist + "\", "

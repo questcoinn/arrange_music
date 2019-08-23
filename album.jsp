@@ -17,13 +17,14 @@
 	Connection con = null;
 	PreparedStatement s = null;
 	ResultSet r = null;
+	String sql = "";
 
 	try {
 		InitialContext ctx = new InitialContext();
 		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
 		con = ds.getConnection();
-
-		String sql = "SELECT COUNT(*) FROM album";
+		
+		sql = "SELECT COUNT(*) FROM album";
 		
 		s = con.prepareStatement(sql);
 		r = s.executeQuery();
@@ -35,12 +36,17 @@
 		final int END	= rows - N * (_page - 1);
 		
 		// for spread
-		sql = "SELECT * FROM album WHERE id BETWEEN ? AND ? ORDER BY id DESC";
+		sql = "SET @CNT=0";
+		
+		s = con.prepareStatement(sql);
+		s.execute();
+		
+		sql = "SELECT * FROM "
+			+ "(SELECT *, IF(true, @CNT:=@CNT+1, 0) AS count FROM album ORDER BY id)t "
+			+ "WHERE count BETWEEN " + START + " AND " + END + " "
+			+ "ORDER BY count DESC";
 
 		s = con.prepareStatement(sql);
-		s.setString(1, "" + START);
-		s.setString(2, "" + END);
-		
 		r = s.executeQuery();
 
 	} catch (Exception e) {
@@ -63,7 +69,8 @@
 		<jsp:include page="pages/loginBox.jsp" />
 		
 		<div id="write-box">
-			<a href="/pages/create.jsp"><input type="button" value="글쓰기"></a>
+			<a href="/pages/create.jsp"></a>
+			<input type="button" value="글쓰기">
 		</div>
 		<hr>
 		<div id="albums">
@@ -119,5 +126,6 @@
 	</main>
 	
 	<script src="/script/albumbtns.js"></script>
+	<script src="/script/validwritercheck.js"></script>
 </body>
 </html>

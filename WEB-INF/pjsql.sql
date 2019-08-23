@@ -20,6 +20,7 @@ id pwd 닉네임 생년월일
     img varchar(255) DEFAULT "nothing.png",
     recommend int DEFAULT 0,
     dsc varchar(16383) NULL,
+    writer varchar(20) NOT NULL,
     FULLTEXT KEY artist(artist),
     FULLTEXT KEY title(title)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;*/
@@ -31,19 +32,23 @@ id pwd 닉네임 생년월일
     birth date NULL
 ); */
 
-/* INSERT INTO album(artist, title, r_date, dsc) VALUES(
-	"test-artist", "test-title", "2019-08-14", "test-description"
-); */
+/*INSERT INTO album(artist, title, r_date, dsc, writer) VALUES(
+	"test-abbbbbb", "test-rr", "2019-08-14", "test-sdas", "test"
+);*/
 
 /*ALTER TABLE album MODIFY dsc VARCHAR(21844);*/
 
-/*DELETE FROM album WHERE id=1;*/
-/*SET @CNT=0;
+/*DELETE FROM album;*/
+/*ALTER TABLE album auto_increment=1;
+SET @CNT=0;
 UPDATE album SET id=@CNT:=@CNT+1;*/
 
-/*UPDATE album SET img="black-milk-dive.jpeg" WHERE id=2;*/
+/*UPDATE album SET recommend=1 WHERE id=2;*/
 
-/*SELECT * FROM album;*/
+/*ALTER TABLE album ADD writer varchar(20) AFTER dsc;*/
+
+SELECT * FROM album;
+/*select * from album order by id limit 8;*/
 
 /* SELECT * FROM album
 	WHERE MATCH(artist, title) AGAINST('test' IN BOOLEAN MODE); */
@@ -65,4 +70,10 @@ UPDATE album SET id=@CNT:=@CNT+1;*/
     heard tinyint(1) DEFAULT 0
 );*/
 
-SELECT * FROM webuser_info;
+/*DELETE FROM webuser_info WHERE id=3;*/
+/*SELECT * FROM webuser_info;*/
+
+/*SET @CNT=0;
+SELECT * FROM 
+(SELECT *, IF(true, @CNT:=@CNT+1, 0) AS count FROM album ORDER BY id)t
+WHERE count BETWEEN 6 AND 13 ORDER BY count DESC;*/
