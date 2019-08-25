@@ -9,11 +9,12 @@
 			<li><a href="/mypage.jsp">마이페이지</a></li>
 		</ul>
 	</nav>
-	<form action="" method="post">
+	<form action="/album.jsp" method="post">
+		<input type="hidden" name="mode" value="search">
 		<select name="search-cls" id="search-cls">
-			<option>아티스트, 본문</option>
-			<option>아티스트</option>
-			<option>본문</option>
+			<option value="tl">아티스트, 앨범명</option>
+			<option value="t">아티스트</option>
+			<option value="l">앨범명</option>
 		</select>
 		<input type="text" name="search-word" placeholder="검색" id="search-box">
 		<input type="submit" value="" id="search-submit">

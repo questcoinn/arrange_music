@@ -10,7 +10,7 @@
 
 	if (nick != null) {
 		String userMessage = nick + "님, 환영합니다.";
-		String logoutBtn = "<a href=\"pages/sessionOut.jsp\" id=\"logout-link\"><input type=\"button\" value=\"logout\"></a>";
+		String logoutBtn = "<a href=\"/pages/sessionOut.jsp\" id=\"logout-link\"><input type=\"button\" value=\"logout\"></a>";
 
 		out.println("<p>" + userMessage + "</p>");
 		out.println(logoutBtn);

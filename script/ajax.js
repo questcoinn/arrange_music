@@ -59,3 +59,19 @@ const thumbsup = (uid, artist, title) => {
         xhttp.send();
     })
 }
+
+// albumbtns.js
+const heardthis = (uid, artist, title) => {
+    return new Promise((resolve, reject) => {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                resolve(this.responseText);
+            }
+        };
+
+        xhttp.open("GET", `/user/heard.jsp?uid=${uid}&artist=${artist}&title=${title}`, true);
+        xhttp.send();
+    })
+}

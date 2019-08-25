@@ -1,18 +1,20 @@
-document.querySelector("input#login-btn").addEventListener("click", (e) => {
-    e.preventDefault();
+try {
+    document.querySelector("input#login-btn").addEventListener("click", (e) => {
+        e.preventDefault();
 
-    const form = document.querySelector("div#login-box form");
-    const id   = document.querySelector("input#uid-box").value;
-    const pwd  = document.querySelector("input#upwd-box").value;
+        const form = document.querySelector("div#login-box form");
+        const id   = document.querySelector("input#uid-box").value;
+        const pwd  = document.querySelector("input#upwd-box").value;
 
-    if(id === "") {
-        alert("아이디를 입력해주세요.");
-    } else if(pwd === "") {
-        alert("패스워드를 입력해주세요.");
-    } else {     
-        checkL(id, pwd, form);
-    }
-});
+        if(id === "") {
+            alert("아이디를 입력해주세요.");
+        } else if(pwd === "") {
+            alert("패스워드를 입력해주세요.");
+        } else {     
+            checkL(id, pwd, form);
+        }
+    });
+} catch {}
 
 const checkL = async (id, pwd, form) => {
     const _response = await checkId(id, pwd);

@@ -10,7 +10,7 @@ id pwd 닉네임 생년월일
 
 /* CREATE DATABASE webpj; */
 
-/*USE webpj;*/
+USE webpj;
 
 /*CREATE TABLE album(
 	id int PRIMARY KEY NOT NULL auto_increment,
@@ -47,11 +47,11 @@ UPDATE album SET id=@CNT:=@CNT+1;*/
 
 /*ALTER TABLE album ADD writer varchar(20) AFTER dsc;*/
 
-SELECT * FROM album;
+/*SELECT * FROM album;*/
 /*select * from album order by id limit 8;*/
 
-/* SELECT * FROM album
-	WHERE MATCH(artist, title) AGAINST('test' IN BOOLEAN MODE); */
+/*SELECT * FROM album
+	WHERE MATCH(artist, title) AGAINST('care package*' IN BOOLEAN MODE);*/
     
  /*INSERT INTO webuser VALUES(
 	"test3", "test", "test-user", NULL
@@ -71,9 +71,12 @@ SELECT * FROM album;
 );*/
 
 /*DELETE FROM webuser_info WHERE id=3;*/
-/*SELECT * FROM webuser_info;*/
+SELECT * FROM webuser_info WHERE userid="test" ORDER BY id DESC;
 
-/*SET @CNT=0;
-SELECT * FROM 
+/*SET @CNT=0;*/
+/*SELECT * FROM 
 (SELECT *, IF(true, @CNT:=@CNT+1, 0) AS count FROM album ORDER BY id)t
 WHERE count BETWEEN 6 AND 13 ORDER BY count DESC;*/
+/*SELECT *, IF(true, @CNT:=@CNT+1, 0) AS count FROM album
+	WHERE MATCH(artist, title) AGAINST('black*' IN BOOLEAN MODE)
+    ORDER BY id;*/

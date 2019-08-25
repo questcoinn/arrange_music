@@ -11,6 +11,8 @@
 	String imgName = "";
 	int recommend  = 0;
 	String desc    = "";
+	String writer  = "";
+	String heard   = "";
 	
 	try {
 		artist = request.getParameter("artist");
@@ -26,11 +28,11 @@
 		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
 		Connection con = ds.getConnection();
 		
-		String sql = "SELECT * FROM album WHERE artist=? AND title=?";
+		String sql = "SELECT * FROM album WHERE "
+			+ "artist='" + artist + "' AND "
+			+ "title='" + title + "'";
 
 		PreparedStatement s = con.prepareStatement(sql);
-		s.setString(1, artist);
-		s.setString(2, title);
 		
 		ResultSet r = s.executeQuery();
 		
@@ -39,7 +41,25 @@
 			imgName   = r.getString(5);
 			recommend = Integer.parseInt(r.getString(6));
 			desc      = r.getString(7).trim().replaceAll("[\n]", "<br>");
+			writer	  = r.getString(8);
 		}
+		
+		
+		
+		String user = (String) session.getAttribute("id");
+		sql = "SELECT * FROM webuser_info WHERE "
+			+ "userid='" + user + "' AND "
+			+ "artist='" + artist + "' AND "
+			+ "title='" + title + "'";
+		
+		s = con.prepareStatement(sql);
+		r = s.executeQuery();
+		
+		heard = r.next()
+			? r.getInt("heard") == 1
+				? "heard"
+				: "not-heard"
+			: "not-heard";
 		
 		r.close();
 		s.close();
@@ -62,6 +82,8 @@
 <body>
 	<%@ include file="/pages/header.jsp" %>
 	<main>
+		<jsp:include page="/pages/loginBox.jsp" />
+		
 		<h2>
 			<span class="artist"><%= artist %></span>
 			<span class="title"><%= title %></span>
@@ -69,10 +91,12 @@
 		<div id="info">
 			<p>발매일 <strong><%= rDate %></strong></p>
 			<p>추천  <strong class="reco"><%= recommend %></strong></p>
+			<p>작성자 <strong id="writer"><%= writer %></strong></p>
 		</div>
 		<hr>
 		<div id="edit-btns">
 			<form action="/pages/update.jsp" method="post">
+				<input type="button" value="수정" id="update-fake">
 				<%
 					out.println("<input type=\"hidden\" name=\"artist\" value=\"" + artist + "\">");
 					out.println("<input type=\"hidden\" name=\"title\" value=\"" + title + "\">");
@@ -80,6 +104,7 @@
 				<input type="submit" value="수정" id="update-btn">
 			</form>
 			<form action="/db/delete.jsp" method="post" id="delete-form">
+				<input type="button" value="삭제" id="delete-fake">
 				<%
 					out.println("<input type=\"hidden\" name=\"artist\" value=\"" + artist + "\">");
 					out.println("<input type=\"hidden\" name=\"title\" value=\"" + title + "\">");
@@ -97,10 +122,12 @@
 		<hr>
 		<div class="album-btns">
 			<input type="button" value="추천" class="reco-btn">
-			<input type="button" value="들었음" class="heard-btn">
+			<%= "<input type=\"button\" value=\"들었음\" class=\"heard-btn " + heard + "\">" %>
 		</div>
 	</main>
 	
 	<script src="/script/deleteCheck.js"></script>
+	<script src="/script/validwritercheck.js"></script>
+	<script src="/script/albumbtns.js"></script>
 </body>
 </html>
