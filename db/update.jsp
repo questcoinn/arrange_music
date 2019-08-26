@@ -15,9 +15,10 @@
 			request, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
 	
 	String artist = multi.getParameter("artist");
-	String title = multi.getParameter("title");
-	String rDate = multi.getParameter("r_date");
-	String dsc = multi.getParameter("dsc");
+	String title  = multi.getParameter("title");
+	String rDate  = multi.getParameter("r_date");
+	String img    = "";
+	String dsc    = multi.getParameter("dsc");
 	
 	Enumeration files = multi.getFileNames();
 	
@@ -41,9 +42,10 @@
 			fileSize = 0;
 		}
 	}
-	
+	// 첨부안되면 아무 처리 안하고 그대로
 	if(originalName == null || file == null) {
-		originalName = multi.getParameter("curImg");
+		img = multi.getParameter("curImg");
+	
 	} else {
 		// 이미지가 교체되면 원래파일 지우기
 		String imgDir = request.getRealPath("/images");
@@ -51,6 +53,8 @@
 		if(originalFile.exists()) {
 			originalFile.delete();
 		}
+		
+		img = originalName.equals(fileName1) ? originalName : fileName1;
 	}
 	
 	int n = 0;
@@ -64,7 +68,7 @@
 			+ "artist=\"" + artist + "\", "
 			+ "title=\"" + title + "\", "
 			+ "r_date=\"" + rDate + "\", "
-			+ "img=\"" + fileName1 + "\", "
+			+ "img=\"" + img + "\", "
 			+ "dsc=\"" + dsc + "\" "
 			+ "WHERE artist=\"" + artist + "\" AND title=\"" + title + "\"";
 		
@@ -84,7 +88,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8" http-equiv="Refresh" content="2;url=/album.jsp">
+	<meta charset="UTF-8" http-equiv="Refresh" content="1.5;url=/album.jsp">
 	<title>completed!</title>
 </head>
 <body>
@@ -101,6 +105,6 @@
 			}
 		%>
 	</p>
-	<p>잠시후 메인 페이지로 돌아갑니다.</p>
+	<p>잠시후 앨범 페이지로 돌아갑니다.</p>
 </body>
 </html>

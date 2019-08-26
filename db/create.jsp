@@ -12,61 +12,69 @@
 	int maxSize = 1024 * 1024 * 10; // 10M
 	
 	MultipartRequest multi = new MultipartRequest(
-			request, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
+		request, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
 	
 	String artist = multi.getParameter("artist");
 	String title  = multi.getParameter("title");
 	String rDate  = multi.getParameter("r_date");
+	String img    = "";
 	String dsc    = multi.getParameter("dsc");
+	String writer = (String) session.getAttribute("id");
 	
 	Enumeration files = multi.getFileNames();
 	
 	String f = "";
 	String originalName = "";
-//	String fileName1 = "";
+	String fileName1 = "";
 //	String fileType = "";
 	File file = null;
 	long fileSize = 0;
 	
-	while(files.hasMoreElements()) {
-		f = (String)files.nextElement(); // 파일 input에 지정한 이름(img)
-        originalName = multi.getOriginalFileName(f); // 그에 해당하는 실재 파일 이름(sample.jpeg)
-//		fileName1 = multi.getFilesystemName(f); // 중복정책이름(sample1.jpeg)
-        
-//		fileType = multi.getContentType(f);
-		file = multi.getFile(f);
-        fileSize = file.length();
-	}
-	
-	int n = 0;
+	if(originalName == null) {
+		img = null;
+		
+	} else {
+		while (files.hasMoreElements()) {
+			f = (String) files.nextElement(); // 파일 input에 지정한 이름(img)
+			originalName = multi.getOriginalFileName(f); // 그에 해당하는 실재 파일 이름(sample.jpeg)
+			fileName1 = multi.getFilesystemName(f); // 중복정책이름(sample1.jpeg)
 
+//			fileType = multi.getContentType(f);
+			file = multi.getFile(f);
+			
+			if(originalName == null) {
+				fileSize = 0;
+				img = "nothing.png";
+				
+			} else {
+				fileSize = file.length();
+				img = originalName.equals(fileName1) ? originalName : fileName1;
+			}
+		}
+	}
+
+	int n = 0;
+	
 	try {
 		InitialContext ctx = new InitialContext();
 		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
 		Connection con = ds.getConnection();
-
-		String sql = "INSERT INTO album(artist, title, r_date, img, dsc) VALUES("
+	
+		String sql = "INSERT INTO album(artist, title, r_date, img, dsc, writer) VALUES("
 			+ "\"" + artist + "\", "
 			+ "\"" + title + "\", "
 			+ "\"" + rDate + "\", "
-			+ "\"" + originalName + "\", "
-			+ "\"" + dsc + "\")";
-		
+			+ "\"" + img + "\", "
+			+ "\"" + dsc + "\", "
+			+ "\"" + writer + "\")";
+			
 		PreparedStatement s = con.prepareStatement(sql);
 		
 		n = s.executeUpdate();
-		
-		if(n == 1) {
-			s = con.prepareStatement("SET @CNT=0");
-			s.execute();
-			
-			s = con.prepareStatement("UPDATE album SET id=@CNT:=@CNT+1");
-			s.executeUpdate();
-		}
-
+	
 		s.close();
 		con.close();
-
+	
 	} catch (Exception e) {
 		out.println("Connection Failed..");
 		out.println(e.getMessage());
@@ -76,7 +84,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8" http-equiv="Refresh" content="2;url=/album.jsp">
+	<meta charset="UTF-8" http-equiv="Refresh" content="1.5;url=/album.jsp">
 	<title>completed!</title>
 </head>
 <body>
@@ -93,6 +101,6 @@
 			}
 		%>
 	</p>
-	<p>잠시후 메인 페이지로 돌아갑니다.</p>
+	<p>잠시후 앨범 페이지로 돌아갑니다.</p>
 </body>
 </html>

@@ -46,51 +46,11 @@
 				</select>
 				<input type="submit" id="calendar-submit">
 			</form>
-			<div id="feed">
-				<span class="date">8.1.</span>
-				<p class="album">
-					<span class="artist">Black Milk</span>
-					<span class="title">DIVE (EP)</span>
-				</p>
-				<p class="album">
-					<span class="artist">Black Milk</span>
-					<span class="title">DIVE (EP)</span>
-				</p>
-				<p class="album">
-					<span class="artist">Black Milk</span>
-					<span class="title">DIVE (EP)</span>
-				</p>
-				<p class="album">
-					<span class="artist">Black Milk</span>
-					<span class="title">DIVE (EP)</span>
-				</p>
-				<span class="date">8.11.</span>
-				<p class="album">
-					<span class="artist">Black Milk</span>
-					<span class="title">DIVE (EP)</span>
-				</p>
-				<p class="album">
-					<span class="artist">Black Milk</span>
-					<span class="title">DIVE (EP)</span>
-				</p>
-				<span class="date">12.28.</span>
-				<p class="album">
-					<span class="artist">Black Milk</span>
-					<span class="title">DIVE (EP)</span>
-				</p>
-				<p class="album">
-					<span class="artist">Black Milk</span>
-					<span class="title">DIVE (EP)</span>
-				</p>
-				<p class="album">
-					<span class="artist">Black Milk</span>
-					<span class="title">DIVE (EP)</span>
-				</p>
-			</div>
+			<div id="feed"></div>
 		</article>
-		<article id="calendar-info">
-			설명
-		</article>
+		<article id="calendar-info"></article>
 	</main>
+	
+	<script src="/script/newalbums.js"></script>
 </body>
 </html>

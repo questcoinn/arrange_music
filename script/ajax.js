@@ -75,3 +75,35 @@ const heardthis = (uid, artist, title) => {
         xhttp.send();
     })
 }
+
+// newalbums.js
+const thismonth = (year, month) => {
+    return new Promise((resolve, reject) => {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                resolve(this.responseText);
+            }
+        };
+
+        xhttp.open("GET", `/db/calendar.jsp?year=${year}&month=${month}`, true);
+        xhttp.send();
+    })
+}
+
+// newalbums.js
+const showdetails = (artist, title) => {
+    return new Promise((resolve, reject) => {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                resolve(this.responseText);
+            }
+        };
+
+        xhttp.open("GET", `/db/details.jsp?artist=${artist}&title=${title}`, true);
+        xhttp.send();
+    })
+}

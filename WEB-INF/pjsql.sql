@@ -47,7 +47,8 @@ UPDATE album SET id=@CNT:=@CNT+1;*/
 
 /*ALTER TABLE album ADD writer varchar(20) AFTER dsc;*/
 
-/*SELECT * FROM album;*/
+SELECT artist, title, DAY(r_date) AS r_day FROM album
+	WHERE YEAR(r_date)=2019 AND MONTH(r_date)=8 ORDER BY r_date;
 /*select * from album order by id limit 8;*/
 
 /*SELECT * FROM album
@@ -71,7 +72,7 @@ UPDATE album SET id=@CNT:=@CNT+1;*/
 );*/
 
 /*DELETE FROM webuser_info WHERE id=3;*/
-SELECT * FROM webuser_info WHERE userid="test" ORDER BY id DESC;
+/*SELECT * FROM webuser_info WHERE userid="test" ORDER BY id DESC;*/
 
 /*SET @CNT=0;*/
 /*SELECT * FROM 

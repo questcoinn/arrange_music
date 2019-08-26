@@ -9,27 +9,28 @@
 	String title   = request.getParameter("title");
 	String img	   = request.getParameter("img");
 	
+	int m = 0;
 	int n = 0;
 	boolean deleted = false;
-	
+	String sql = "";
 	try {
 		InitialContext ctx = new InitialContext();
 		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
 		Connection con = ds.getConnection();
 		
-		PreparedStatement s = con.prepareStatement("DELETE FROM album WHERE artist=? AND title=?");
-		s.setString(1, artist);
-		s.setString(2, title);
+		sql = "DELETE FROM album WHERE "
+			+ "artist=\"" + artist + "\" AND "
+			+ "title=\"" + title + "\"";
 		
-		n = s.executeUpdate();
+		// album 테이블
+		PreparedStatement s = con.prepareStatement(sql);
 		
-		if(n == 1) {
-			s = con.prepareStatement("SET @CNT=0");
-			s.execute();
+		m = s.executeUpdate();
+		
+		if(img.equals("nothing.png")) {
+			deleted = true;
 			
-			s = con.prepareStatement("UPDATE album SET id=@CNT:=@CNT+1");
-			s.executeUpdate();
-			
+		} else if(m == 1) {
 			// 파일 지우기
 			String imgDir = request.getRealPath("/images");
 			File file = new File(imgDir + "/" + img);
@@ -37,6 +38,15 @@
 				deleted = file.delete();
 			}
 		}
+		
+		// webuser_info 테이블
+		sql = "DELETE FROM webuser_info WHERE "
+			+ "artist=\"" + artist + "\" AND "
+			+ "title=\"" + title + "\"";
+		
+		s = con.prepareStatement(sql);
+		
+		n = s.executeUpdate();
 		
 		s.close();
 		con.close();
@@ -50,16 +60,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8" http-equiv="Refresh" content="2;url=/album.jsp">
+	<meta charset="UTF-8" http-equiv="Refresh" content="1.5;url=/album.jsp">
 	<title>completed!</title>
 </head>
 <body>
 	<p>
 		<%
-			if (n == 0) {
+			if (m == 0) {
 				out.println("삭제중 오류가 발생했습니다.");
 
-			} else if (n == 1 && deleted) {
+			} else if (m == 1 && deleted) {
 				out.println("삭제 완료");
 
 			} else {
@@ -67,6 +77,6 @@
 			}
 		%>
 	</p>
-	<p>잠시후 메인 페이지로 돌아갑니다.</p>
+	<p>잠시후 앨범 페이지로 돌아갑니다.</p>
 </body>
 </html>
