@@ -51,7 +51,7 @@
 		} else if(mode.equals("search")) {
 			sql = "SELECT COUNT(*) FROM album WHERE MATCH("
 				+ cls + ") AGAINST("
-				+ "'" + word + "*' IN BOOLEAN MODE);";
+				+ "'" + escapeQuotes(word) + "*' IN BOOLEAN MODE);";
 				
 		}
 		
@@ -135,9 +135,9 @@
 						// heard
 						String user = (String) session.getAttribute("id");
 						sql = "SELECT * FROM webuser_info WHERE "
-							+ "userid='" + user + "' AND "
-							+ "artist='" + artist + "' AND "
-							+ "title='" + title + "'";
+							+ "userid='" + escapeQuotes(user) + "' AND "
+							+ "artist='" + escapeQuotes(artist) + "' AND "
+							+ "title='" + escapeQuotes(title) + "'";
 						
 						s = con.prepareStatement(sql);
 						rH = s.executeQuery();
@@ -214,6 +214,14 @@
 			.replaceAll("[=]", "%3D")
 			.replaceAll("[?]", "%3F")
 			.replaceAll("[\\\\]", "%5C");
+		
+		return result;
+	}
+
+	private String escapeQuotes(String str) {
+		String result = str
+			.replaceAll("'", "\\\\'")
+			.replaceAll("\"", "\\\\\"");
 		
 		return result;
 	}

@@ -47,9 +47,10 @@ UPDATE album SET id=@CNT:=@CNT+1;*/
 
 /*ALTER TABLE album ADD writer varchar(20) AFTER dsc;*/
 
-SELECT artist, title, DAY(r_date) AS r_day FROM album
-	WHERE YEAR(r_date)=2019 AND MONTH(r_date)=8 ORDER BY r_date;
+/*SELECT artist, title, DAY(r_date) AS r_day FROM album
+	WHERE YEAR(r_date)=2019 AND MONTH(r_date)=8 ORDER BY r_date;*/
 /*select * from album order by id limit 8;*/
+/*SELECT * FROM album where artist="Clairo" AND title="Immunity";*/
 
 /*SELECT * FROM album
 	WHERE MATCH(artist, title) AGAINST('care package*' IN BOOLEAN MODE);*/
@@ -71,8 +72,8 @@ SELECT artist, title, DAY(r_date) AS r_day FROM album
     heard tinyint(1) DEFAULT 0
 );*/
 
-/*DELETE FROM webuser_info WHERE id=3;*/
-/*SELECT * FROM webuser_info WHERE userid="test" ORDER BY id DESC;*/
+/*DELETE FROM webuser_info WHERE userid="null";*/
+SELECT * FROM webuser_info ORDER BY id DESC;
 
 /*SET @CNT=0;*/
 /*SELECT * FROM 

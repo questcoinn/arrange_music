@@ -41,6 +41,7 @@
 
 	} catch (Exception e) {
 		out.println("failed_con");
+		
 	} finally {
 		id = null;
 		pwd = null;

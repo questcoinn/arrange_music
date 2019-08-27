@@ -42,7 +42,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8" http-equiv="Refresh" content="3;url=/index.jsp">
+	<meta charset="UTF-8" http-equiv="Refresh" content="1.5;url=/index.jsp">
 	<title>completed!</title>
 </head>
 <body>

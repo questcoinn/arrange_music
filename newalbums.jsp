@@ -44,7 +44,6 @@
 						}
 					%>
 				</select>
-				<input type="submit" id="calendar-submit">
 			</form>
 			<div id="feed"></div>
 		</article>
