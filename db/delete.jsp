@@ -19,8 +19,8 @@
 		Connection con = ds.getConnection();
 		
 		sql = "DELETE FROM album WHERE "
-			+ "artist=\"" + artist + "\" AND "
-			+ "title=\"" + title + "\"";
+			+ "artist=\"" + escapeQuotes(artist) + "\" AND "
+			+ "title=\"" + escapeQuotes(title) + "\"";
 		
 		// album 테이블
 		PreparedStatement s = con.prepareStatement(sql);
@@ -41,8 +41,8 @@
 		
 		// webuser_info 테이블
 		sql = "DELETE FROM webuser_info WHERE "
-			+ "artist=\"" + artist + "\" AND "
-			+ "title=\"" + title + "\"";
+			+ "artist=\"" + escapeQuotes(artist) + "\" AND "
+			+ "title=\"" + escapeQuotes(title) + "\"";
 		
 		s = con.prepareStatement(sql);
 		
@@ -80,3 +80,15 @@
 	<p>잠시후 앨범 페이지로 돌아갑니다.</p>
 </body>
 </html>
+
+<%!
+	private String escapeQuotes(String str) {
+		if(str == null) return null;
+	
+		String result = str
+			.replaceAll("'", "\\\\'")
+			.replaceAll("\"", "\\\\\"");
+	
+		return result;
+	}
+%>

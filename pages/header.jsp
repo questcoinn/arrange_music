@@ -12,7 +12,7 @@
 	<form action="/album.jsp" method="post">
 		<input type="hidden" name="mode" value="search">
 		<select name="search-cls" id="search-cls">
-			<option value="tl">아티스트, 앨범명</option>
+			<option value="tl">전체</option>
 			<option value="t">아티스트</option>
 			<option value="l">앨범명</option>
 		</select>

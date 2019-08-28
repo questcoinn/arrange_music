@@ -25,8 +25,15 @@ div#edit-btns form {
     display: inline-block;
 }
 
+input#update-btn, input#delete-btn {
+    visibility: hidden;
+    width: 0;
+    padding: 0;
+}
+
 div#img-container {
     width: 30%;
+    margin-top: 8px;
 }
 
  main img {
@@ -39,10 +46,24 @@ div.album-btns {
     width: 150px;
 }
 
+input.reco-btn, input.heard-btn {
+    width: 57px;
+}
+
 input.reco-btn {
     background: #32bd32;
 }
 
-input.heard-btn {
+input.heard-btn.not-heard {
     background: #555;
+}
+
+input.heard-btn.heard {
+    background: #24cdff;
+}
+
+@media all and (orientation: portrait) {
+    div#img-container {
+        width: 60%;
+    }
 }

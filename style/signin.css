@@ -23,13 +23,15 @@ label {
 
 p.info {
     margin: 0;
+    color: #47b3b3;
 }
 
 input#use-btn {
     color: black;
     background: white;
-    border-bottom: 1px solid red;
     border-radius: 0%;
     padding: 0;
     margin-left: 50px;
+    text-decoration: underline red;
+    color: #47b3b3;
 }

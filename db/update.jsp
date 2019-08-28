@@ -14,6 +14,9 @@
 	MultipartRequest multi = new MultipartRequest(
 			request, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
 	
+	String orgArtist = multi.getParameter("orgArtist");
+	String orgTitle = multi.getParameter("orgTitle");
+	
 	String artist = multi.getParameter("artist");
 	String title  = multi.getParameter("title");
 	String rDate  = multi.getParameter("r_date");
@@ -65,12 +68,12 @@
 		Connection con = ds.getConnection();
 
 		String sql = "UPDATE album SET "
-			+ "artist=\"" + artist + "\", "
-			+ "title=\"" + title + "\", "
+			+ "artist=\"" + escapeQuotes(artist) + "\", "
+			+ "title=\"" + escapeQuotes(title) + "\", "
 			+ "r_date=\"" + rDate + "\", "
 			+ "img=\"" + img + "\", "
-			+ "dsc=\"" + dsc + "\" "
-			+ "WHERE artist=\"" + artist + "\" AND title=\"" + title + "\"";
+			+ "dsc=\"" + escapeQuotes(dsc) + "\" "
+			+ "WHERE artist=\"" + escapeQuotes(orgArtist) + "\" AND title=\"" + escapeQuotes(orgTitle) + "\"";
 		
 		PreparedStatement s = con.prepareStatement(sql);
 		
@@ -108,3 +111,15 @@
 	<p>잠시후 앨범 페이지로 돌아갑니다.</p>
 </body>
 </html>
+
+<%!
+	private String escapeQuotes(String str) {
+		if(str == null) return null;
+	
+		String result = str
+			.replaceAll("'", "\\\\'")
+			.replaceAll("\"", "\\\\\"");
+	
+		return result;
+	}
+%>

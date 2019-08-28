@@ -8,20 +8,26 @@ main article {
     border: 2px solid black;
     margin: 1%;
     width: 48%;
-    height: 850px;
+    height: 820px;
 }
 
-input#calendar-submit {
-    display: none;
+article#calendar {
+    overflow-y: auto;
+}
+
+article#calendar form {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+    border-bottom: 1px solid darkgray;
 }
 
 article#calendar select {
     width: 48%;
     border: none;
-    border-bottom: 1px solid darkgray;
     font-size: 1.2rem;
     padding: 5px;
-    margin-bottom: 10px;
 }
 
 div#feed {
@@ -36,6 +42,7 @@ span.date {
     left: -45px;
     font-size: 0.8rem;
     height: 21px;
+    margin-top: 3px;
 }
 
 span.date::after {
@@ -46,8 +53,12 @@ span.date::after {
     height: 12px;
     border-radius: 50%;
     position: absolute;
-    top: 3px;
+    top: 3.5px;
     left: 38px;
+}
+
+p.album {
+    cursor: pointer;
 }
 
 span.title::before {
@@ -56,4 +67,72 @@ span.title::before {
 
 article#calendar-info {
     padding: 10px 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div#img-container {
+    width: 50%;
+    position: relative;
+}
+
+div#img-container span.tooltip {
+    content: "tooltip";
+    visibility: hidden;
+    width: fit-content;
+    height: 28px;
+    padding: 0 8px;
+    border: 1px solid black;
+    text-align: center;
+    z-index: 1;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: calc(50%);
+    background: black;
+    color: white;
+    border-radius: 5px;
+}
+
+div#img-container:hover span.tooltip {
+    visibility: visible;
+}
+
+span.tooltip::after { /* arrow tooltip */
+    content: '';
+    display: block;
+    position: absolute;
+    top: -8px;
+    left: calc(50% - 8px);
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid black;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+}
+
+article img {
+    width: 100%;
+}
+
+@media all and (orientation: portrait) {
+    main {
+        flex-direction: column;
+        max-height: none;
+    }
+
+    main article {
+        width: 98%;
+        height: fit-content;
+    }
+
+    article#calendar {
+        height: 250px;
+    }
+
+    article#calendar form {
+        border-bottom: none;
+        box-shadow: 0 0 20px 4px;
+    }
 }

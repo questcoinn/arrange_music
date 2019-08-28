@@ -61,11 +61,11 @@
 		Connection con = ds.getConnection();
 	
 		String sql = "INSERT INTO album(artist, title, r_date, img, dsc, writer) VALUES("
-			+ "\"" + artist + "\", "
-			+ "\"" + title + "\", "
+			+ "\"" + escapeQuotes(artist) + "\", "
+			+ "\"" + escapeQuotes(title) + "\", "
 			+ "\"" + rDate + "\", "
 			+ "\"" + img + "\", "
-			+ "\"" + dsc + "\", "
+			+ "\"" + escapeQuotes(dsc) + "\", "
 			+ "\"" + writer + "\")";
 			
 		PreparedStatement s = con.prepareStatement(sql);
@@ -104,3 +104,15 @@
 	<p>잠시후 앨범 페이지로 돌아갑니다.</p>
 </body>
 </html>
+
+<%!
+	private String escapeQuotes(String str) {
+		if(str == null) return null;
+	
+		String result = str
+			.replaceAll("'", "\\\\'")
+			.replaceAll("\"", "\\\\\"");
+	
+		return result;
+	}
+%>

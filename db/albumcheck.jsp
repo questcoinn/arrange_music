@@ -14,7 +14,7 @@
 		Connection con = ds.getConnection();
 		
 		String sql = "SELECT artist, title FROM album "
-			+ "WHERE artist=\"" + artist + "\" AND title=\"" + title + "\"";
+			+ "WHERE artist=\"" + escapeQuotes(artist) + "\" AND title=\"" + escapeQuotes(title) + "\"";
 		
 		PreparedStatement s = con.prepareStatement(sql);
 		
@@ -32,5 +32,17 @@
 
 	} catch (Exception e) {
 		out.println("failed_con");
+	}
+%>
+
+<%!
+	private String escapeQuotes(String str) {
+		if(str == null) return null;
+	
+		String result = str
+			.replaceAll("'", "\\\\'")
+			.replaceAll("\"", "\\\\\"");
+	
+		return result;
 	}
 %>

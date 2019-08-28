@@ -3,10 +3,9 @@
 <%
 	request.setCharacterEncoding("utf-8");
 
-	String id	= (String) session.getAttribute("id");
 	String nick = (String) session.getAttribute("nick");
 
-	out.println("<div id=\"login-box\" uid=\"" + id + "\">");
+	out.println("<div id=\"login-box\">");
 
 	if (nick != null) {
 		String userMessage = nick + "님, 환영합니다.";

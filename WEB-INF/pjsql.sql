@@ -1,11 +1,12 @@
 /*
-[앨범]
-id 아티스트 앨범제목 발매일 추천수 설명
+[album]
+_id 아티스트 앨범제목 발매일 이미지 추천수 설명 작성자
 
-[사용자]
+[webuser]
 id pwd 닉네임 생년월일
 
-사용자별로 추천한 앨범, 들은 앨범 정리해야함 > txt 파일로?
+[webuser_info]
+_id userid albumid recommended heard
 */
 
 /* CREATE DATABASE webpj; */
@@ -52,8 +53,7 @@ UPDATE album SET id=@CNT:=@CNT+1;*/
 /*select * from album order by id limit 8;*/
 /*SELECT * FROM album where artist="Clairo" AND title="Immunity";*/
 
-/*SELECT * FROM album
-	WHERE MATCH(artist, title) AGAINST('care package*' IN BOOLEAN MODE);*/
+/*SELECT * FROM album;*/
     
  /*INSERT INTO webuser VALUES(
 	"test3", "test", "test-user", NULL
@@ -73,7 +73,7 @@ UPDATE album SET id=@CNT:=@CNT+1;*/
 );*/
 
 /*DELETE FROM webuser_info WHERE userid="null";*/
-SELECT * FROM webuser_info ORDER BY id DESC;
+/*SELECT * FROM webuser_info ORDER BY id DESC;*/
 
 /*SET @CNT=0;*/
 /*SELECT * FROM 

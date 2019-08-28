@@ -16,3 +16,7 @@ document.querySelector("input#open-btn").addEventListener("click", (e) => {
         e.target.parentElement.removeChild(e.target);
     }, 2000);
 });
+
+if(document.querySelector("div#heard-box").children.length > 5) {
+    document.querySelector("div#heard-box").style.boxShadow = "inset 0px -35px 10px -18px #ccc";
+}

@@ -9,8 +9,11 @@ div#albums {
 }
 
 span.album {
-    margin: 40px;
+    width: 25%;
+    max-width: 25%;
     text-align: center;
+    margin: 40px 0;
+    overflow: hidden;
 }
 
 span.album p {
@@ -19,6 +22,10 @@ span.album p {
 
 span.album img {
     width: 200px;
+}
+
+p.album-name {
+    font-size: 0.9rem;
 }
 
 span.title::before {
@@ -36,12 +43,47 @@ p.album-reco::before {
 div.album-btns {
     display: flex;
     justify-content: space-evenly;
+    width: 60%;
+    margin: 0 auto;
+}
+
+input.reco-btn, input.heard-btn {
+    width: 57px;
 }
 
 input.reco-btn {
     background: #32bd32;
 }
 
-input.heard-btn {
+input.heard-btn.not-heard {
     background: #555;
+}
+
+input.heard-btn.heard {
+    background: #24cdff;
+}
+
+div#album-nav span {
+    margin-right: 5px;
+}
+
+div#album-nav span:last-child {
+    margin-right: 0;
+}
+
+@media all and (orientation: portrait) {
+    div#albums {
+        flex-direction: column;
+        align-content: center;
+    }
+
+    span.album {
+        max-width: none;
+        width: 80%;
+        margin: 10px 0;
+    }
+
+    span.album img {
+        width: 300px;
+    }
 }

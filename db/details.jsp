@@ -16,8 +16,8 @@
 		Connection con = ds.getConnection();
 
 		String sql = "SELECT * FROM album WHERE "
-			+ "artist='" + artist + "' AND "
-			+ "title='" + title + "'";
+			+ "artist='" + escapeQuotes(artist) + "' AND "
+			+ "title='" + escapeQuotes(title) + "'";
 
 		PreparedStatement s = con.prepareStatement(sql);
 
@@ -40,6 +40,18 @@
 %>
 <div id='img-container'>
 	<%= "<img src='/images/" + imgSrc + "'>" %>
-	<span class='tooltip'>tooltip</span>
+	<span class='tooltip'><%= artist + " - " + title %></span>
 </div>
 <p><%= dsc %></p>
+
+<%!
+	private String escapeQuotes(String str) {
+		if(str == null) return null;
+	
+		String result = str
+			.replaceAll("'", "\\\\'")
+			.replaceAll("\"", "\\\\\"");
+	
+		return result;
+	}
+%>

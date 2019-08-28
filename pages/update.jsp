@@ -15,16 +15,16 @@
 	if(artist == null || title == null)
 		response.sendRedirect("/");
 	
-	try {
+//	try {
 		InitialContext ctx = new InitialContext();
 		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
 		Connection con = ds.getConnection();
 		
-		String sql = "SELECT * FROM album WHERE artist=? AND title=?";
+		String sql = "SELECT * FROM album WHERE "
+			+ "artist='" + escapeQuotes(artist) + "' AND "
+			+ "title='" + escapeQuotes(title) + "'";
 
 		PreparedStatement s = con.prepareStatement(sql);
-		s.setString(1, artist);
-		s.setString(2, title);
 		
 		ResultSet r = s.executeQuery();
 		
@@ -39,11 +39,11 @@
 		s.close();
 		con.close();
 		
-	} catch (Exception e) {
+/*	} catch (Exception e) {
 		out.println("Connection Failed..");
 		out.println(e.getMessage());
 		e.printStackTrace();
-	}
+	}*/
 %>
 <!DOCTYPE html>
 <html>
@@ -57,6 +57,9 @@
 	<%@ include file="/pages/header.jsp" %>
 	<main>
 		<form action="/db/update.jsp" enctype="multipart/form-data" method="post">
+			<%= "<input type='hidden' name='orgArtist' value='" + artist + "'>" %>
+			<%= "<input type='hidden' name='orgTitle' value='" + title + "'>" %>
+			<input type='hidden' name='orgArtist' value=''>
 			<div id="title-container">
 				<%
 					out.println("<input type=\"text\" name=\"artist\" placeholder=\"아티스트*\" id=\"artist-in\" value=\"" + artist + "\">");
@@ -92,3 +95,15 @@
 	</main>
 </body>
 </html>
+
+<%!
+	private String escapeQuotes(String str) {
+		if(str == null) return null;
+	
+		String result = str
+			.replaceAll("'", "\\\\'")
+			.replaceAll("\"", "\\\\\"");
+	
+		return result;
+	}
+%>

@@ -80,7 +80,7 @@
 			sql = "SELECT * FROM "
 				+ "(SELECT *, IF(true, @CNT:=@CNT+1, 0) AS count FROM album "
 				+ "WHERE MATCH(" + cls + ") AGAINST("
-				+ "'" + word + "*' IN BOOLEAN MODE) "
+				+ "'" + escapeQuotes(word) + "*' IN BOOLEAN MODE) "
 				+ "ORDER BY id)t "
 				+ "WHERE count BETWEEN " + START + " AND " + END + " "
 				+ "ORDER BY count DESC";
@@ -135,7 +135,7 @@
 						// heard
 						String user = (String) session.getAttribute("id");
 						sql = "SELECT * FROM webuser_info WHERE "
-							+ "userid='" + escapeQuotes(user) + "' AND "
+							+ "userid='" + user + "' AND "
 							+ "artist='" + escapeQuotes(artist) + "' AND "
 							+ "title='" + escapeQuotes(title) + "'";
 						
@@ -219,6 +219,8 @@
 	}
 
 	private String escapeQuotes(String str) {
+		if(str == null) return null;
+		
 		String result = str
 			.replaceAll("'", "\\\\'")
 			.replaceAll("\"", "\\\\\"");

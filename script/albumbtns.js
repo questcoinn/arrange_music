@@ -1,18 +1,21 @@
 document.querySelectorAll("input.reco-btn").forEach(x => {
     x.addEventListener("click", (e) => {
-        const container = e.target.parentElement.parentElement;
+        // validwritercheck.js
+        getReader().then((uid) => {
+            const container = e.target.parentElement.parentElement;
     
-        const uid    = document.querySelector("div#login-box").getAttribute("uid");
-        const artist = container.querySelector("span.artist").innerHTML;
-        const title  = container.querySelector("span.title").innerHTML;
-    
-        const recoEl = container.querySelector("strong.reco");
-    
-        if(uid === null || uid === "null")
-            alert("로그인을 해주세요.");
-        else {
-            checkReco(uid, artist, title, recoEl);
-        }
+            const artist = container.querySelector("span.artist").innerHTML;
+            const title  = container.querySelector("span.title").innerHTML;
+        
+            const recoEl = container.querySelector("strong.reco");
+        
+            if(uid === null || uid === "null")
+                alert("로그인을 해주세요.");
+            else {
+                checkReco(uid, artist, title, recoEl);
+            }
+        });
+        
     });
 });
 
@@ -40,19 +43,21 @@ const checkReco = async (uid, artist, title, el) => {
 
 document.querySelectorAll("input.heard-btn").forEach(x => {
     x.addEventListener("click", (e) => {
-        const container = e.target.parentElement.parentElement;
+        // validwritercheck.js
+        getReader().then((uid) => {
+            const container = e.target.parentElement.parentElement;
     
-        const uid    = document.querySelector("div#login-box").getAttribute("uid");
-        const artist = container.querySelector("span.artist").innerHTML;
-        const title  = container.querySelector("span.title").innerHTML;
+            const artist = container.querySelector("span.artist").innerHTML;
+            const title  = container.querySelector("span.title").innerHTML;
 
-        const hearEl = container.querySelector("input.heard-btn");
-    
-        if(uid === null || uid === "null")
-            alert("로그인을 해주세요.");
-        else {
-            checkHeard(uid, artist, title, hearEl);
-        }
+            const hearEl = container.querySelector("input.heard-btn");
+        
+            if(uid === null || uid === "null")
+                alert("로그인을 해주세요.");
+            else {
+                checkHeard(uid, artist, title, hearEl);
+            }
+        });
     });
 });
 

@@ -29,8 +29,8 @@
 		Connection con = ds.getConnection();
 		
 		String sql = "SELECT * FROM album WHERE "
-			+ "artist='" + artist + "' AND "
-			+ "title='" + title + "'";
+			+ "artist='" + escapeQuotes(artist) + "' AND "
+			+ "title='" + escapeQuotes(title) + "'";
 
 		PreparedStatement s = con.prepareStatement(sql);
 		
@@ -44,13 +44,11 @@
 			writer	  = r.getString(8);
 		}
 		
-		
-		
 		String user = (String) session.getAttribute("id");
 		sql = "SELECT * FROM webuser_info WHERE "
 			+ "userid='" + user + "' AND "
-			+ "artist='" + artist + "' AND "
-			+ "title='" + title + "'";
+			+ "artist='" + escapeQuotes(artist) + "' AND "
+			+ "title='" + escapeQuotes(title) + "'";
 		
 		s = con.prepareStatement(sql);
 		r = s.executeQuery();
@@ -131,3 +129,15 @@
 	<script src="/script/albumbtns.js"></script>
 </body>
 </html>
+
+<%!
+	private String escapeQuotes(String str) {
+		if(str == null) return null;
+	
+		String result = str
+			.replaceAll("'", "\\\\'")
+			.replaceAll("\"", "\\\\\"");
+		
+		return result;
+	}
+%>

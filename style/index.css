@@ -27,7 +27,7 @@ main hr {
 /* header */
 
 header {
-    padding: 10px 100px;
+    padding: 10px 5%;
     margin-bottom: 20px;
     background: black;
     box-shadow: 0 0 10px 10px;
@@ -63,16 +63,27 @@ nav a {
 header form {
     border: 1px solid white;
     background: white;
+    /*width: 15.5%*/
+    position: relative;
+}
+
+header input[type*="hidden"] {
+    width: 0;
 }
 
 select#search-cls {
     font-size: 0.6rem;
     border: none;
+    /*width: 35%;*/
+    height: 21px;
+    position: relative;
+    top: -1px;
 }
 
 input#search-box {
     width: 140px;
     border: none;
+    /*width: 53%;*/
 }
 
 input#search-submit {
@@ -83,10 +94,10 @@ input#search-submit {
     border: none;
     height: 17px;
     width: 17px;
-    margin-right: 5px;
     position: relative;
     top: 2px;
     cursor: pointer;
+    margin-right: 3px;
 }
 
 /* main */
@@ -98,11 +109,12 @@ main {
     align-items: center;
     justify-content: center;
     max-width: 60%;
+    padding-bottom: 50px;
 }
 
 div#login-box {
     position: absolute;
-    top: 80px;
+    top: 100px;
     right: calc(10% - 7.5%);
     border: 2px solid darkgray;
     width: 15%;
@@ -123,6 +135,13 @@ div#login-btns {
 article#random-article {
     border: 2px solid darkgray;
     text-align: center;
+    word-wrap: break-word;
+    width: 50%;
+    padding: 10px;
+}
+
+article#random-article h2 {
+    margin-top: 0;
 }
 
 article#random-article img {

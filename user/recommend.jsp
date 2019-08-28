@@ -16,8 +16,8 @@
 		
 		String sql = "SELECT * FROM webuser_info WHERE "
 			+ "userid=\"" + id + "\" AND "
-			+ "artist=\"" + artist + "\" AND "
-			+ "title=\"" + title + "\"";
+			+ "artist=\"" + escapeQuotes(artist) + "\" AND "
+			+ "title=\"" + escapeQuotes(title) + "\"";
 		
 		PreparedStatement s = con.prepareStatement(sql);
 		ResultSet r = s.executeQuery();
@@ -36,8 +36,8 @@
 				// 아니면 추천
 				// album 테이블
 				sql = "SELECT recommend FROM album WHERE "
-					+ "artist=\"" + artist + "\" AND "
-					+ "title=\"" + title + "\"";
+					+ "artist=\"" + escapeQuotes(artist) + "\" AND "
+					+ "title=\"" + escapeQuotes(title) + "\"";
 				
 				s = con.prepareStatement(sql);
 				r = s.executeQuery();
@@ -48,8 +48,8 @@
 					recommend = Integer.parseInt(r.getString(1)) + 1;
 				
 				sql = "UPDATE album SET recommend=" + recommend + " WHERE "
-					+ "artist=\"" + artist + "\" AND "
-					+ "title=\"" + title + "\"";
+					+ "artist=\"" + escapeQuotes(artist) + "\" AND "
+					+ "title=\"" + escapeQuotes(title) + "\"";
 				
 				s = con.prepareStatement(sql);
 				m = s.executeUpdate();
@@ -57,8 +57,8 @@
 				// webuser_info 테이블
 				sql = "UPDATE webuser_info SET recommended=1 WHERE "
 					+ "userid=\"" + id + "\" AND "
-					+ "artist=\"" + artist + "\" AND "
-					+ "title=\"" + title + "\"";
+					+ "artist=\"" + escapeQuotes(artist) + "\" AND "
+					+ "title=\"" + escapeQuotes(title) + "\"";
 				
 				s = con.prepareStatement(sql);
 				n = s.executeUpdate();
@@ -81,8 +81,8 @@
 			// 엔티티가 없으면 새로 쓰기
 			// album 테이블
 			sql = "SELECT recommend FROM album WHERE "
-				+ "artist=\"" + artist + "\" AND "
-				+ "title=\"" + title + "\"";
+				+ "artist=\"" + escapeQuotes(artist) + "\" AND "
+				+ "title=\"" + escapeQuotes(title) + "\"";
 				
 			s = con.prepareStatement(sql);
 			r = s.executeQuery();
@@ -93,8 +93,8 @@
 				recommend = Integer.parseInt(r.getString(1)) + 1;
 				
 			sql = "UPDATE album SET recommend=" + recommend + " WHERE "
-				+ "artist=\"" + artist + "\" AND "
-				+ "title=\"" + title + "\"";
+				+ "artist=\"" + escapeQuotes(artist) + "\" AND "
+				+ "title=\"" + escapeQuotes(title) + "\"";
 				
 			s = con.prepareStatement(sql);
 			m = s.executeUpdate();
@@ -102,8 +102,8 @@
 			// webuser_info 테이블
 			sql = "INSERT INTO webuser_info(userid, artist, title, recommended) VALUES("
 				+ "\"" + id + "\", "
-				+ "\"" + artist + "\", "
-				+ "\"" + title + "\", "
+				+ "\"" + escapeQuotes(artist) + "\", "
+				+ "\"" + escapeQuotes(title) + "\", "
 				+ "1)";
 			
 			s = con.prepareStatement(sql);
@@ -128,5 +128,17 @@
 		out.println("Connection Failed..");
 		out.println(e.getMessage());
 		e.printStackTrace();
+	}
+%>
+
+<%!
+	private String escapeQuotes(String str) {
+		if(str == null) return null;
+	
+		String result = str
+			.replaceAll("'", "\\\\'")
+			.replaceAll("\"", "\\\\\"");
+	
+		return result;
 	}
 %>

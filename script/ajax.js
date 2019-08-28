@@ -107,3 +107,19 @@ const showdetails = (artist, title) => {
         xhttp.send();
     })
 }
+
+// albumbtns.js, validwritercheck.js
+const checkReader = () => {
+    return new Promise((resolve, reject) => {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                resolve(this.responseText);
+            }
+        };
+
+        xhttp.open("GET", "/auth/validwritercheck.jsp", true);
+        xhttp.send();
+    })
+}
