@@ -1,0 +1,7 @@
+*데이터베이스 설계부터*	*중요*
+join 활용하기
+crud는 class 쓰기
+유효성검사 class 쓰기
+	- 주소창
+	- sql
+ajax 쓸때 promise 쓰기
