@@ -9,12 +9,14 @@ document.querySelector("input#open-btn").addEventListener("click", (e) => {
 
     self.style.opacity = "0";
     box.style.maxHeight = "none";
-    box.style.boxShadow = "none";
+    box.style.boxShadow = "";
     box.style.marginBottom = "none";
 
     setInterval(() => {
-        e.target.parentElement.removeChild(e.target);
-    }, 2000);
+        self.parentElement.removeChild(self);
+        box.style.animationName = "";
+        box.style.animationDuration = "";
+    }, 1000);
 });
 
 if(document.querySelector("div#heard-box").children.length > 5) {

@@ -5,3 +5,4 @@ crud는 class 쓰기
 	- 주소창
 	- sql
 ajax 쓸때 promise 쓰기
+css position 쓸때는 부모개체에 relative 걸어두고 쓰기

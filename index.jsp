@@ -86,6 +86,7 @@
 			
 		%>
 		<article id="random-article">
+			<input type="button" id="reload-btn" onclick="location.reload()">
 			<h2>&lt;&nbsp;추천 앨범&nbsp;&gt;</h2>
 			<%= "<a href='/pages/album.jsp?artist=" + artistPara + "&title=" + titlePara + "'>" %>
 			<%= "<img src='/images/" + img + "'></a>" %>

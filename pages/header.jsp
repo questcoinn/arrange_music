@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <header>
-	<a href="/index.jsp" id="logo"><img src="" alt="logo"></a>
+	<a href="/index.jsp" id="logo">
+		<img src="https://image.flaticon.com/icons/svg/148/148722.svg" alt="logo">
+		<span>MUSIC</span>
+	</a>
 	<nav>
 		<ul>
 			<li><a href="/album.jsp">앨범들</a></li>

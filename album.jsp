@@ -91,8 +91,8 @@
 		r = s.executeQuery();
 
 	} catch (Exception e) {
-		out.println("Connection Failed..");
-		out.println(e.getMessage());
+		/*out.println("Connection Failed..");
+		out.println(e.getMessage());*/
 		e.printStackTrace();
 	}
 %>
@@ -109,6 +109,7 @@
 	<main>
 		<jsp:include page="pages/loginBox.jsp" />
 		
+		<h2>앨범 정보</h2>
 		<div id="write-box">
 			<a href="/pages/create.jsp"></a>
 			<input type="button" value="글쓰기">

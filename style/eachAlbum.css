@@ -2,6 +2,17 @@ main {
     padding-bottom: 50px;
 }
 
+input#back {
+    background-color: unset;
+    background-image: url("https://image.flaticon.com/icons/svg/462/462935.svg");
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 70px;
+    left: 5%;
+}
+
 main h2 {
     font-size: 2.2rem;
     margin: 10px 0;

@@ -54,6 +54,18 @@ a {
 
 a#logo {
     color: white;
+    height: 27px;
+    position: relative;
+}
+
+a#logo img {
+    height: 27px;
+}
+
+a#logo span {
+    position: absolute;
+    top: 0;
+    left: 35px;
 }
 
 nav a {
@@ -89,7 +101,7 @@ input#search-box {
 input#search-submit {
     color:  darkgray;
     background-color: unset;
-    background-image: url("https://image.flaticon.com/icons/svg/34/34202.svg");
+    background-image: url("https://image.flaticon.com/icons/svg/149/149852.svg");
     background-size: 17px;
     border: none;
     height: 17px;
@@ -138,6 +150,20 @@ article#random-article {
     word-wrap: break-word;
     width: 50%;
     padding: 10px;
+    position: relative;
+}
+
+input#reload-btn {
+    background-color: unset;
+    background-image: url("https://image.flaticon.com/icons/svg/126/126502.svg");
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+}
+article#random-article {
+    margin-top: 10px;
 }
 
 article#random-article h2 {

@@ -80,6 +80,7 @@
 <body>
 	<%@ include file="/pages/header.jsp" %>
 	<main>
+		<input type="button" id="back" onclick="history.go(-1)">
 		<jsp:include page="/pages/loginBox.jsp" />
 		
 		<h2>

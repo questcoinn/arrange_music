@@ -1,11 +1,19 @@
+main h2 {
+    margin: 0;
+}
+
 div#write-box {
-    align-self: flex-end;
+    /*align-self: flex-end;*/
+    position: absolute;
+    top: 72px;
+    right: 20%;
 }
 
 div#albums {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    transition: 1s;
 }
 
 span.album {
@@ -14,6 +22,13 @@ span.album {
     text-align: center;
     margin: 40px 0;
     overflow: hidden;
+    transition: 1s;
+}
+
+span.album:hover {
+    overflow: unset;
+    z-index: 1;
+    transition: 1s;
 }
 
 span.album p {
@@ -22,6 +37,13 @@ span.album p {
 
 span.album img {
     width: 200px;
+    border-radius: 50%;
+    transition: 1s;
+}
+
+span.album img:hover {
+    border-radius: 0;
+    transition: 1s;
 }
 
 p.album-name {

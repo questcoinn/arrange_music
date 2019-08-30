@@ -67,6 +67,7 @@
 		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
 		Connection con = ds.getConnection();
 
+		// album 테이블
 		String sql = "UPDATE album SET "
 			+ "artist=\"" + escapeQuotes(artist) + "\", "
 			+ "title=\"" + escapeQuotes(title) + "\", "
@@ -79,6 +80,18 @@
 		
 		n = s.executeUpdate();
 
+		// webuser_info 테이블
+		if(!artist.equals(orgArtist) || !title.equals(orgTitle)) {
+			sql = "UPDATE webuser_info SET "
+				+ "artist='" + escapeQuotes(artist) + "', "
+				+ "title='" + escapeQuotes(title) + "' "
+				+ "WHERE artist='" + escapeQuotes(orgArtist) + "' AND title='" + escapeQuotes(orgTitle) + "'";
+		
+			s = con.prepareStatement(sql);
+			
+			s.executeUpdate();
+		}
+		
 		s.close();
 		con.close();
 
@@ -98,7 +111,7 @@
 	<p>
 		<%
 			if (n == 0) {
-				out.println("저장중 오류가 발생했습니다.");
+				out.println("");
 
 			} else if (n == 1) {
 				out.println("저장 완료");

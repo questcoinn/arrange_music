@@ -2,6 +2,7 @@ main {
     flex-direction: row;
     max-height: 100vh;
     align-items: flex-start;
+    transition: 1s;
 }
 
 main article {
@@ -9,10 +10,12 @@ main article {
     margin: 1%;
     width: 48%;
     height: 820px;
+    transition: 1s;
 }
 
 article#calendar {
     overflow-y: auto;
+    transition: 1s;
 }
 
 article#calendar form {
@@ -21,6 +24,7 @@ article#calendar form {
     background: white;
     z-index: 1;
     border-bottom: 1px solid darkgray;
+    transition: 1s;
 }
 
 article#calendar select {
@@ -59,6 +63,14 @@ span.date::after {
 
 p.album {
     cursor: pointer;
+    transition: 0.3s;
+}
+
+p.album:hover {
+    font-size: 1.1rem;
+    color: #1bbb72;
+    margin: calc(16px - .1rem) 0;
+    transition: 0.3s;
 }
 
 span.title::before {
@@ -80,10 +92,11 @@ div#img-container {
 
 div#img-container span.tooltip {
     content: "tooltip";
-    visibility: hidden;
+    /*visibility: hidden;*/
+    opacity: 0;
     width: fit-content;
-    height: 28px;
-    padding: 0 8px;
+    height: fit-content;
+    padding: 0 8px 2px 8px;
     border: 1px solid black;
     text-align: center;
     z-index: 1;
@@ -93,13 +106,16 @@ div#img-container span.tooltip {
     background: black;
     color: white;
     border-radius: 5px;
+    transition: .3s;
 }
 
 div#img-container:hover span.tooltip {
-    visibility: visible;
+    /*visibility: visible;*/
+    opacity: 1;
+    transition: .3s;
 }
 
-span.tooltip::after { /* arrow tooltip */
+span.tooltip::after {
     content: '';
     display: block;
     position: absolute;
@@ -114,6 +130,12 @@ span.tooltip::after { /* arrow tooltip */
 
 article img {
     width: 100%;
+    transition: .6s;
+}
+
+article img:hover {
+    filter: drop-shadow(0 0 0.5rem black);
+    transition: .6s;
 }
 
 @media all and (orientation: portrait) {
