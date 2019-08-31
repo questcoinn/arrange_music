@@ -48,6 +48,7 @@ span.album img:hover {
 
 p.album-name {
     font-size: 0.9rem;
+    text-decoration: underline;
 }
 
 span.title::before {
@@ -71,6 +72,7 @@ div.album-btns {
 
 input.reco-btn, input.heard-btn {
     width: 57px;
+    min-width: 57px;
 }
 
 input.reco-btn {

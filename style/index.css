@@ -73,14 +73,42 @@ nav a {
 }
 
 header form {
-    border: 1px solid white;
-    background: white;
     /*width: 15.5%*/
+    border: 1px solid white;
     position: relative;
+    transition: .3s;
 }
 
-header input[type*="hidden"] {
-    width: 0;
+header form#big {
+    border: 1.5px solid black;
+    box-shadow: 0 0 10px;
+    position: fixed;
+    top: 60px;
+    left: calc(50% - 250px);
+    background: white;
+    width: 500px;
+    height: 160px;
+    padding: 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    z-index: 2;
+}
+
+input#toggle-size {
+    font-size: 0.6rem;
+    height: 21px;
+    background: none;
+    padding: 0 6px;
+    position: relative;
+    top: -1px;
+    transition: .3s;
+}
+
+select#search-cls, input#search-box {
+    background: none;
+    color: white;
+    transition: .3s;
 }
 
 select#search-cls {
@@ -98,8 +126,13 @@ input#search-box {
     /*width: 53%;*/
 }
 
+input#search-box::placeholder {
+    color: lightgray;
+}
+
 input#search-submit {
-    color:  darkgray;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 4px white; 
     background-color: unset;
     background-image: url("https://image.flaticon.com/icons/svg/149/149852.svg");
     background-size: 17px;
@@ -110,6 +143,60 @@ input#search-submit {
     top: 2px;
     cursor: pointer;
     margin-right: 3px;
+}
+
+header form:hover {
+    background: white;
+    transition: .3s;
+}
+
+header form:hover input#toggle-size {
+    color: black;
+    transition: .3s;
+}
+
+header form:hover select#search-cls, header form:hover input#search-box {
+    color: black;
+    transition: .3s;
+}
+
+header form:hover input#search-box::placeholder {
+    color: gray;
+}
+
+header form#big input#toggle-size,
+header form#big select#search-cls,
+header form#big input#search-box {
+    color: black;
+    height: 50px;
+    font-size: 1.5rem;
+    border: 1px solid black;
+    border-radius: 3px;
+    margin: 0 32px;
+}
+
+header form#big input#toggle-size {
+    width: 15%;
+}
+
+header form#big select#search-cls {
+    width: 40%;
+}
+
+header form#big input#search-box {
+    width: 68.5%;
+}
+
+header form#big input#search-box::placeholder {
+    color: gray;
+}
+
+header form#big input#search-submit {
+    border-radius: 0;
+    box-shadow : none;
+    background-size: 50px;
+    height: 50px;
+    width: 50px;
 }
 
 /* main */
@@ -162,6 +249,7 @@ input#reload-btn {
     position: absolute;
     right: 10px;
 }
+
 article#random-article {
     margin-top: 10px;
 }
@@ -170,6 +258,11 @@ article#random-article h2 {
     margin-top: 0;
 }
 
+article#random-article a {
+    display: inline-block;
+    width: 55%
+}
+
 article#random-article img {
-    width: 300px;
+    width: 100%;
 }

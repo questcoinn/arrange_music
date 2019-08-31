@@ -11,24 +11,24 @@
 <body>
 	<%@ include file="/pages/header.jsp" %>
 	<form action="signsubmit.jsp" method="post" id="sign-form">
-		<div class="item req" id="uid">
+		<div class="item" id="uid">
 			<label for="uid">아이디*</label>
-			<input type="text" name="uid" id="uid-in">
+			<input type="text" name="uid" id="uid-in" required>
 			<input type="button" value="중복확인" id="check" >
 			<p class="info"></p>
 		</div>
-		<div class="item req" id="upwd">
+		<div class="item" id="upwd">
 			<label for="upwd">패스워드*</label>
-			<input type="password" name="upwd" id="upwd-in">
+			<input type="password" name="upwd" id="upwd-in" required>
 		</div>
 		<div class="item" id="upwd-cfg">
 			<label for="upwd-cfg">패스워드확인*</label>
-			<input type="password" id="upwd-cfg-in">
+			<input type="password" id="upwd-cfg-in" required>
 			<p class="info"></p>
 		</div>
-		<div class="item req" id="unick">
+		<div class="item" id="unick">
 			<label for="unick">닉네임*</label>
-			<input type="text" name="unick" id="unick-in">
+			<input type="text" name="unick" id="unick-in" required>
 		</div>
 		<div class="item unreq" id="ubirth">
 			<label for="ubirth">생년월일</label>

@@ -14,6 +14,7 @@
 	</nav>
 	<form action="/album.jsp" method="post">
 		<input type="hidden" name="mode" value="search">
+		<input type="button" value="크게" id="toggle-size">
 		<select name="search-cls" id="search-cls">
 			<option value="tl">전체</option>
 			<option value="t">아티스트</option>
@@ -22,4 +23,5 @@
 		<input type="text" name="search-word" placeholder="검색" id="search-box">
 		<input type="submit" value="" id="search-submit">
 	</form>
+	<script src="/script/searchbox.js"></script>
 </header>

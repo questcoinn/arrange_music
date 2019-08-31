@@ -83,6 +83,7 @@ article#calendar-info {
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: 1s;
 }
 
 div#img-container {

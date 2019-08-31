@@ -2,20 +2,17 @@ document.querySelector("input#open-btn").addEventListener("click", (e) => {
     const self = e.target;
     const box  = document.querySelector("div#heard-box");
     
-    self.style.animationName = "disappear";
-    self.style.animationDuration = "1s";
-    box.style.animationName = "down";
-    box.style.animationDuration = "1s";
+    self.style.animation = "disappear 1s";
+    box.style.animation = "down 1s";
 
     self.style.opacity = "0";
     box.style.maxHeight = "none";
     box.style.boxShadow = "";
     box.style.marginBottom = "none";
 
-    setInterval(() => {
+    setTimeout(() => {
         self.parentElement.removeChild(self);
-        box.style.animationName = "";
-        box.style.animationDuration = "";
+        box.style.animation = "";
     }, 1000);
 });
 
