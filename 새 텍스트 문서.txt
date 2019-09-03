@@ -6,3 +6,5 @@ crud는 class 쓰기
 	- sql
 ajax 쓸때 promise 쓰기
 css position 쓸때는 부모개체에 relative 걸어두고 쓰기
+blob: https://heropy.blog/2019/02/28/blob/
+admin/root/webmaster 등의 계정을 웹에서 생성 못하게
