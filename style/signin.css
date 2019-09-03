@@ -21,6 +21,10 @@ label {
     border-bottom: 1px solid #e83c3c;
 }
 
+div.item[required] label::after {
+    content: "*";
+}
+
 p.info {
     margin: 0;
     color: #47b3b3;

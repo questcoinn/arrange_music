@@ -52,25 +52,3 @@ getBlob(option).then((myBlob) => {
     document.body.appendChild(img);
     URL.revokeObjectURL(myBlob);
 });
-
-var list = performance.getEntriesByType("resource");
-
-// For each "resource", display its *Size property values
-console.log("= Display Size Data");
-for (var i=0; i < list.length; i++) {
-console.log("== Resource[" + i + "] - " + list[i].name);
-if ("decodedBodySize" in list[i])
-    console.log("... decodedBodySize[" + i + "] = " + list[i].decodedBodySize);
-else
-    console.log("... decodedBodySize[" + i + "] = NOT supported");
-
-if ("encodedBodySize" in list[i])
-    console.log("... encodedBodySize[" + i + "] = " + list[i].encodedBodySize);
-else
-    console.log("... encodedBodySize[" + i + "] = NOT supported");
-
-if ("transferSize" in list[i])
-    console.log("... transferSize[" + i + "] = " + list[i].transferSize);
-else
-    console.log("... transferSize[" + i + "] = NOT supported");
-}
